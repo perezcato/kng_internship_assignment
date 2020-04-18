@@ -14,7 +14,7 @@ app.post('/', upload.any(), async (req, res) => {
    writeStream.write(file.buffer,'utf8');
    const userData = await fsExtra.readJson('./upload.json');
    console.log(userData);
-   res.render('response');
+   res.render('response', {userData});
 });
 app.listen(3000,() => {
    console.log('server started listening on port 3000');

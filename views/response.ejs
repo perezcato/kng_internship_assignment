@@ -88,7 +88,31 @@
         <tbody>
         <tr>
             <td>Full Name</td>
-            <td>work</td>
+            <td><%= userData['First Name'] %> <%= userData['Last Name'] %> <%= userData['Other Name'] %>  </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><%= userData['Gender'] %></td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td><%= userData['Date of Birth'] %></td>
+        </tr>
+        <tr>
+            <td>Place of Birth</td>
+            <td> <%= userData['Place of Birth'] %></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><%= userData['Country'] %></td>
+        </tr>
+        <tr>
+            <td>Region</td>
+            <td><%= userData['Region'] %></td>
+        </tr>
+        <tr>
+            <td>Street Name</td>
+            <td><%= userData['Street Name'] %></td>
         </tr>
         </tbody>
     </table>

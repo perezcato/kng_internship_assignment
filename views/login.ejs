@@ -72,6 +72,12 @@
             font-size: 14px;
             color: #1f1f1f;
         }
+        .error{
+            background: rgba(212, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
     </style>
 </head>
@@ -80,10 +86,14 @@
         <header>
             <a href="/register">Register</a>
         </header>
-
         <div class="card">
+            <% if(message !== 'no-error' ) { %>
+            <div class="error">
+                Invalid email / password
+            </div>
+            <%}%>
             <div class="card-header">Login</div>
-            <form action="#" method="post">
+            <form action="/login" method="post">
                 <input type="text" name="email" required placeholder="Email">
                 <input type="password" name="password" required placeholder="Password">
                 <button type="submit">Sign In</button>

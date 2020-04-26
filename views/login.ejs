@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>KNG Internship - Log In</title>
+    <style type="text/css">
+        body{
+            margin: 0 !important;
+            font-family: "Poppins", sans-serif;
+        }
+        .wrapper {
+            position: relative;
+            min-height: 100vh;
+            background-color: black;
+            background-image: url("https://images.unsplash.com/photo-1544077960-604201fe74bc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixid=eyJhcHBfaWQiOjF9");
+            background-position: center;
+            background-size: cover;
+            overflow: hidden;
+        }
+        header{
+            text-align: center;
+            padding: 20px 40px;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+
+        .card{
+            width: 450px;
+            background: white;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            margin-top: 70px;
+        }
+        input{
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 3px;
+            outline: none;
+            border: 0;
+            font-size: 15px;
+            padding: 13px 10px;
+            margin-bottom: 20px;
+            background-color: #c2c2d6;
+            color: #1f1f1f;
+        }
+        .card-header{
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        button{
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 3px;
+            border: none;
+            background: #054466;
+            color: white;
+        }
+        ::placeholder{
+            font-size: 14px;
+            color: #1f1f1f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/register">Register</a>
+        </header>
+
+        <div class="card">
+            <div class="card-header">Login</div>
+            <form action="#" method="post">
+                <input type="text" name="email" required placeholder="Email">
+                <input type="password" name="password" required placeholder="Password">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

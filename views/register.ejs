@@ -26,9 +26,10 @@
             padding: 20px 40px;
         }
         a{
-            color: white;
-            text-decoration: none;
+            color: #054466;
+            text-decoration: underline;
             border-bottom: 2px solid white;
+            letter-spacing: 1px;
         }
 
         .card{
@@ -72,24 +73,38 @@
             font-size: 14px;
             color: #1f1f1f;
         }
+        .error{
+            background: rgba(212, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .footer{
+            text-align: right;
+        }
 
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <a href="/login">Login</a>
-        </header>
 
         <div class="card">
+            <% if(errors) { %>
+                <div class="error">
+                    <%= errors%>
+                </div>
+            <%}%>
             <div class="card-header">Register</div>
-            <form action="#" method="post">
+            <form action="/register" method="post">
                 <input type="text" name="name" required placeholder="Full Name">
                 <input type="text" name="email" required placeholder="Email">
                 <input type="password" name="password" required placeholder="Password">
-                <input type="password" name="confirm-password" required placeholder="Confirm Password">
+                <input type="password" name="cpassword" required placeholder="Confirm Password">
                 <button type="submit">Sign In</button>
             </form>
+            <div class="footer">
+                <a href="/login">Login</a>
+            </div>
         </div>
     </div>
 </body>

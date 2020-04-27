@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <style type="text/css">
+        body{
+            margin: 0 !important;
+            font-family: "Poppins", sans-serif;
+        }
+        header{
+            -webkit-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            padding: 25px;
+            background: #212942;
+            text-align: center;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        a:first-of-type{
+            margin-right: 20px;
+        }
+        a:hover{
+            border-bottom: 2px solid white;
+        }
+        .card{
+            margin: 50px auto;
+            width: 350px;
+            height: 400px;
+            box-sizing: border-box;
+            background: #212942;
+            -webkit-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            padding: 20px;
+        }
+        .image{
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .user-image{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 100;
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <a href="/packages">Packages</a><a href="/logout"> Logout</a>
+        </header>
+
+        <div class="card">
+            <div class="image">
+                <img class="user-image" src="http://s020.radikal.ru/i704/1703/f8/445c49629467.jpg" alt="user">
+            </div>
+
+            <div class="body">
+                <p>Name: Perez Cato</p>
+                <p>Email: Perez Cato</p>
+                <p>Login Time: <%= (new Date()).toISOString().split('T')[1];  %> </p>
+                <p>Name: Perez Cato</p>
+                <p>Name: Perez Cato</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

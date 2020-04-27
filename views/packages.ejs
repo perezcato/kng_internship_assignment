@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <style type="text/css">
+        body{
+            margin: 0 !important;
+            font-family: "Poppins", sans-serif;
+        }
+        header{
+            -webkit-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            padding: 25px;
+            background: #212942;
+            text-align: center;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        a:first-of-type{
+            margin-right: 20px;
+        }
+        a:hover{
+            border-bottom: 2px solid white;
+        }
+        .card{
+            margin: 50px auto;
+            width: 350px;
+            height: 400px;
+            box-sizing: border-box;
+            background: #212942;
+            -webkit-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            box-shadow: 0px 6px 33px -3px rgba(0,0,0,0.75);
+            padding: 20px;
+        }
+        .image{
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        a:active{
+            border-bottom: 2px solid white;
+        }
+        .user-image{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 100;
+        }
+        p{
+            color: white;
+        }
+        .container th h1 {
+            font-weight: bold;
+            font-size: 1em;
+            text-align: left;
+            color: #185875;
+        }
+
+        .container td {
+            font-weight: normal;
+            font-size: 1em;
+            -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+            -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+        }
+
+        .container {
+            text-align: left;
+            overflow: hidden;
+            width: 80%;
+            margin: 20px auto;
+            display: table;
+            padding: 0 0 8em 0;
+        }
+
+        .container td, .container th {
+            padding-bottom: 1%;
+            padding-top: 1%;
+            padding-left:2%;
+        }
+
+        /* Background-color of the odd rows */
+        .container tr:nth-child(odd) {
+            background-color: #323C50;
+        }
+
+        /* Background-color of the even rows */
+        .container tr:nth-child(even) {
+            background-color: #2C3446;
+        }
+
+        .container th {
+            background-color: #1F2739;
+        }
+
+        .container td:first-child { color: #FB667A; }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <a href="/packages">Packages</a><a href="/logout"> Logout</a>
+        </header>
+
+        <table class="container">
+            <thead>
+            <tr>
+                <th><h1>Module</h1></th>
+                <th><h1>Description</h1></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Full Name</td>
+                <td>- </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

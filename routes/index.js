@@ -5,11 +5,13 @@ import crypto from 'crypto'
 import multer from 'multer'
 import passport from 'passport'
 import Joi from '@hapi/joi'
+import sgMail from '@sendgrid/mail'
 
 import User from '../models/User.js'
 
 const router = express.Router()
 const upload = multer()
+sgMail.setApiKey('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');
 
 const guard = (req, res, next) => {
   if (req.user) {
@@ -78,8 +80,16 @@ router.post('/register', async (req, res, next) => {
     user.password = await crypto.createHmac('sha256', 'kng').update(frmValidation.value.password).digest('hex')
     user.activation_token = await crypto.createHmac('sha256', 'kng').update(frmValidation.value.email).digest('hex')
     await user.save()
+    const msg = {
+      to: user.email,
+      from: 'perezcatoc@gmail.com',
+      subject: 'Account verification',
+      html: `Please click <a href="http://localhost:3000/verify?${user.activation_token}">here</a> here to verify your password`
+    }
+    await sgMail.send(msg)
   } catch (e) {
     if (e.name === 'MongoError' && e.code === 11000) { req.flash('registerError', 'email already exists') }
+    else req.flash('registerError', 'something went wrong')
     return res.redirect('/register')
   }
   passport.authenticate('local')(req, res, () => {
@@ -125,9 +135,26 @@ router.post('/forgot-password', async (req, res, next) => {
     req.flash('registerError', 'Email not found')
     return res.redirect('/forgot-password')
   }
+  try {
+    const forgottenToken = await crypto.createHmac('sha256', 'kng')
+      .update(userEmail.email)
+      .digest('hex')
 
-  console.log(userEmail)
-  res.redirect('/forgot-password')
+    userEmail.forgot_password_token = forgottenToken
+    await userEmail.save()
+    const msg = {
+      to: userEmail.email,
+      from: 'perezcatoc@gmail.com',
+      subject: 'Reset Password',
+      html: `please click <a href="http://localhost:3000?${userEmail.forgot_password_token}">here</a>the link to change your password`
+    }
+    await sgMail.send(msg)
+    return res.redirect('/login')
+  } catch (e) {
+    console.log(e)
+    req.flash('registerError', 'Something went wrong please try again later')
+    return res.redirect('/forgot-password')
+  }
 })
 
 export default router

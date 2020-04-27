@@ -24,6 +24,10 @@ const userSchema = new Schema({
   activation_token: {
     type: String,
     default: null
+  },
+  forgot_password_token: {
+    type: String,
+    default: null
   }
 }, { timestamps: true })
 

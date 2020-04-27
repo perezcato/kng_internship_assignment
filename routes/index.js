@@ -8,6 +8,8 @@ import Joi from '@hapi/joi'
 import sgMail from '@sendgrid/mail'
 
 import User from '../models/User.js'
+import { showLoginForm } from '../controllers/LoginController.js'
+import { showRegisterationForm } from '../controllers/RegisterController.js'
 
 const router = express.Router()
 const upload = multer()
@@ -39,22 +41,15 @@ const authValidate = (req, res, next) => {
   return next()
 }
 
-router.get('/register', authValidate, (req, res, next) => {
-  res.render('register', { errors: req.flash('registerError')[0] })
-})
+router.get('/register', authValidate, showRegisterationForm)
 
-router.get('/login', authValidate, (req, res, next) => {
-  const error = req.flash('error')[0] ? req.flash('error')[0] : 'no-error'
-  res.render('login', { message: error })
-})
+router.get('/login', authValidate, showLoginForm)
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
   failureRedirect: '/login',
   failureFlash: true
-}), (req, res, next) => {
-  res.send('verified')
-})
+}))
 
 router.post('/register', async (req, res, next) => {
   const frmDetails = req.body

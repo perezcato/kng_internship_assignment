@@ -4,7 +4,6 @@ import fsExtra from 'fs-extra'
 import multer from 'multer'
 import passport from 'passport'
 import dotenv from 'dotenv'
-import sgMail from '@sendgrid/mail'
 
 import { showLoginForm, logout } from '../controllers/LoginController.js'
 import { showRegisterationForm, register, verify } from '../controllers/RegisterController.js'
@@ -14,11 +13,10 @@ import { dashboardGuard, authValidate } from '../middlwares/AuthMiddleware.js'
 const router = express.Router()
 const upload = multer()
 dotenv.config()
-sgMail.setApiKey(process.env.API_KEY)
 
 router.get('/', (req, res, next) => res.redirect('/login'))
 
-router.get('/dashboard', dashboardGuard, (req, res, next) => res.render('dashboard'))
+router.get('/dashboard', dashboardGuard, (req, res, next) => res.render('dashboard', { user: req.user, timeIn: req.session.timeIn }))
 
 router.get('/packages', dashboardGuard, (req, res, next) => res.render('packages'))
 
@@ -33,10 +31,12 @@ router.get('/reset-password', showResetPasswordForm)
 router.post('/reset-password', resetPassword)
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/dashboard',
   failureRedirect: '/login',
   failureFlash: true
-}))
+}), (req, res, next) => {
+  req.session.timeIn = new Date().toISOString()
+  return res.redirect('/dashboard')
+})
 
 router.post('/register', register)
 

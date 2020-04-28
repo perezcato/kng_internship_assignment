@@ -1,13 +1,12 @@
 import Joi from '@hapi/joi'
 import User from '../models/User.js'
 import crypto from 'crypto'
-import sgMail from '@sendgrid/mail'
 import passport from 'passport'
 import createError from 'http-errors'
 import dotenv from 'dotenv'
+import transport from '../services/mail.js'
 
 dotenv.config()
-sgMail.setApiKey(process.env.API_KEY)
 
 export const showRegisterationForm = (req, res, next) => {
   res.render('register', { errors: req.flash('registerError')[0] })
@@ -43,7 +42,7 @@ export const register = async (req, res, next) => {
       subject: 'Account verification',
       html: `Please click <a href="${process.env.APP_URL}/verify?token=${user.activation_token}">here</a> here to verify your password`
     }
-    await sgMail.send(msg)
+    await transport.sendMail(msg)
   } catch (e) {
     if (e.name === 'MongoError' && e.code === 11000) { req.flash('registerError', 'email already exists') } else req.flash('registerError', 'something went wrong')
     return res.redirect('/register')

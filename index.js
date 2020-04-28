@@ -7,11 +7,14 @@ import mongoose from 'mongoose'
 import flash from 'connect-flash'
 import passport from './services/passport-setup.js'
 import createError from 'http-errors'
+import dotenv from 'dotenv'
 
 import indexRouter from './routes/index.js'
-const app = express()
 
-mongoose.connect('mongodb://localhost:27017/kng', { useNewUrlParser: true, useUnifiedTopology: true })
+const app = express()
+dotenv.config()
+
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'ejs')
@@ -33,7 +36,13 @@ app.use(passport.session())
 app.use('/', indexRouter)
 
 app.use('*', (req, res, next) => {
+  res.status(404)
   next(createError(404, 'Page Not found'))
+})
+
+app.use((error, req, res, next) => {
+  console.log(res.statusCode)
+  res.render('404', { statusCode: res.statusCode, message: error.message })
 })
 
 app.listen(3000, () => {

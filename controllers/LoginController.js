@@ -5,4 +5,7 @@ export const showLoginForm = (req, res, next) => {
   res.render('login', { message: error })
 }
 
-
+export const logout = (req, res, next) => {
+  req.logout()
+  res.redirect('/login')
+}

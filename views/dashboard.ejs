@@ -12,12 +12,22 @@
         body{
             margin: 0 !important;
             font-family: "Poppins", sans-serif !important;
+            background-image: url("https://images.unsplash.com/photo-1544077960-604201fe74bc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixid=eyJhcHBfaWQiOjF9");
         }
     </style>
 </head>
 
 <body class="font-sans">
 <div class="bg-white shadow overflow-hidden sm:rounded-lg w-full lg:w-2/4 mx-auto mt-10">
+
+    <% if(!user.user_is_verified){ %>
+    <div class="px-4 py-5 border-b border-gray-200 sm:px-6 bg-green-500">
+        <p class="text-lg leading-6 font-medium text-gray-900">
+            Please check your mail to verify your account
+        </p>
+    </div>
+        <%}%>
+
     <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
         <div class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
             <img class="h-16 w-16 rounded-full"

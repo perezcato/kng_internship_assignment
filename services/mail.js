@@ -1,12 +1,11 @@
-import nodemailer from 'nodemailer'
+import mailgun from 'mailgun-js'
+import dotenv from 'dotenv'
 
-const transport = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS
-  }
+dotenv.config()
+
+const mailGun = mailgun({
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN
 })
 
-export default transport
+export default mailGun

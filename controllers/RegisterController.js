@@ -4,7 +4,7 @@ import crypto from 'crypto'
 import passport from 'passport'
 import createError from 'http-errors'
 import dotenv from 'dotenv'
-import transport from '../services/mail.js'
+import mailGun from '../services/mail.js'
 
 dotenv.config()
 
@@ -37,16 +37,17 @@ export const register = async (req, res, next) => {
     user.activation_token = await crypto.createHmac('sha256', 'kng').update(frmValidation.value.email).digest('hex')
     await user.save()
     const msg = {
-      to: user.email,
       from: 'perezcatoc@gmail.com',
+      to: user.email,
       subject: 'Account verification',
       html: `Please click <a href="${process.env.APP_URL}/verify?token=${user.activation_token}">here</a> here to verify your password`
     }
-    await transport.sendMail(msg)
+    mailGun.messages().send(msg).then(message => console.log(message)).catch(err => console.log(err))
   } catch (e) {
     if (e.name === 'MongoError' && e.code === 11000) { req.flash('registerError', 'email already exists') } else req.flash('registerError', 'something went wrong')
     return res.redirect('/register')
   }
+  req.session.timeIn = new Date().toISOString()
   passport.authenticate('local')(req, res, () => {
     return res.redirect('/dashboard')
   })

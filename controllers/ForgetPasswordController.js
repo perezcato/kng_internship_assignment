@@ -3,7 +3,7 @@ import User from '../models/User.js'
 import crypto from 'crypto'
 import createError from 'http-errors'
 import dotenv from 'dotenv'
-import transport from '../services/mail.js'
+import mailGun from '../services/mail.js'
 
 dotenv.config()
 
@@ -33,7 +33,7 @@ export const requestToken = async (req, res, next) => {
       subject: 'Reset Password',
       html: `please click <a href="${process.env.APP_URL}/reset-password?token=${userEmail.forgot_password_token}">here</a>the link to change your password`
     }
-    await transport.sendMail(msg)
+    await mailGun.messages().send(msg)
     req.session.resetLink = 'reset link successfully sent to your email'
     return res.redirect('/forgot-password')
   } catch (e) {

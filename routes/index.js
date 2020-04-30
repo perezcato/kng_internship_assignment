@@ -18,7 +18,12 @@ router.get('/', (req, res, next) => res.redirect('/login'))
 
 router.get('/dashboard', dashboardGuard, (req, res, next) => res.render('dashboard', { user: req.user, timeIn: req.session.timeIn }))
 
-router.get('/packages', dashboardGuard, (req, res, next) => res.render('packages'))
+router.get('/packages', dashboardGuard, (req, res, next) => {
+  const page = req.query.page
+  console.log(page)
+  if (page === '2') return res.render('packages2')
+  return res.render('packages')
+})
 
 router.get('/register', authValidate, showRegisterationForm)
 

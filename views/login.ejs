@@ -99,8 +99,8 @@
             <%}%>
             <div class="card-header">Login</div>
             <form action="/login" method="post">
-                <input type="text" name="email" required placeholder="Email">
-                <input type="password" name="password" required placeholder="Password">
+                <input type="email" name="email" required placeholder="Email">
+                <input type="password" minlength="8" name="password" required placeholder="Password">
                 <button type="submit">Sign In</button>
 
                 <div class="footer">

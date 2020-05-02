@@ -4,9 +4,11 @@ import crypto from 'crypto'
 import passport from 'passport'
 import createError from 'http-errors'
 import dotenv from 'dotenv'
+import sgMail from '@sendgrid/mail'
 import mailGun from '../services/mail.js'
 
 dotenv.config()
+sgMail.setApiKey(process.env.SENDGRID_KEY)
 
 export const showRegisterationForm = (req, res, next) => {
   res.render('register', { errors: req.flash('registerError')[0] })
@@ -42,7 +44,7 @@ export const register = async (req, res, next) => {
       subject: 'Account verification',
       html: `Please click <a href="${process.env.APP_URL}/verify?token=${user.activation_token}">here</a> here to verify your password`
     }
-    mailGun.messages().send(msg).then(message => console.log(message)).catch(err => console.log(err))
+    await sgMail.send(msg)
   } catch (e) {
     if (e.name === 'MongoError' && e.code === 11000) { req.flash('registerError', 'email already exists') } else req.flash('registerError', 'something went wrong')
     return res.redirect('/register')

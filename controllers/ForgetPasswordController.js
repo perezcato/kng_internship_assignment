@@ -2,10 +2,12 @@ import Joi from '@hapi/joi'
 import User from '../models/User.js'
 import crypto from 'crypto'
 import createError from 'http-errors'
+import sgMail from '@sendgrid/mail'
 import dotenv from 'dotenv'
 import mailGun from '../services/mail.js'
 
 dotenv.config()
+sgMail.setApiKey(process.env.SENDGRID_KEY)
 
 export const requestToken = async (req, res, next) => {
   const validEmail = Joi.object({
@@ -33,7 +35,7 @@ export const requestToken = async (req, res, next) => {
       subject: 'Reset Password',
       html: `please click <a href="${process.env.APP_URL}/reset-password?token=${userEmail.forgot_password_token}">here</a>the link to change your password`
     }
-    await mailGun.messages().send(msg)
+    await sgMail.send(msg)
     req.session.resetLink = 'reset link successfully sent to your email'
     return res.redirect('/forgot-password')
   } catch (e) {

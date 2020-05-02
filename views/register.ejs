@@ -69,6 +69,9 @@
             background: #054466;
             color: white;
         }
+        .disabled{
+            background: rgba(6, 152, 214, 0.52) !important;
+        }
         ::placeholder{
             font-size: 14px;
             color: #1f1f1f;
@@ -97,10 +100,10 @@
             <div class="card-header">Register</div>
             <form action="/register" method="post">
                 <input type="text" name="name" required placeholder="Full Name">
-                <input type="text" name="email" required placeholder="Email">
-                <input type="password" name="password" required placeholder="Password">
-                <input type="password" name="cpassword" required placeholder="Confirm Password">
-                <button type="submit">Sign Up</button>
+                <input type="email" name="email" required placeholder="Email">
+                <input type="password" id="password" name="password" minlength="8" required placeholder="Password">
+                <input type="password" id="cpassword" name="cpassword" minlength="8" required placeholder="Confirm Password">
+                <button id="sign-up" type="submit">Sign Up</button>
             </form>
             <div class="footer">
                 <a href="/login">Login</a>

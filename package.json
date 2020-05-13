@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "dev": "nodemon ./index.js"
   },
   "type": "module",
@@ -12,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
-    "@sendgrid/mail": "^7.0.1",
+    "@sendgrid/mail": "ear 7.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -27,7 +28,9 @@
     "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "jest": "^26.0.1",
+    "puppeteer": "^3.0.4"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
